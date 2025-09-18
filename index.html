@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthAI - Your Intelligent Healthcare Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>🏥 HealthAI</h1>
+                    <span class="tagline">Intelligent Healthcare Assistant</span>
+                </div>
+                <nav class="nav">
+                    <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+                    <button class="nav-btn" data-section="chat">Patient Chat</button>
+                    <button class="nav-btn" data-section="prediction">Disease Prediction</button>
+                    <button class="nav-btn" data-section="treatment">Treatment Plans</button>
+                    <button class="nav-btn" data-section="analytics">Health Analytics</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="welcome-banner">
+                    <h2>Welcome to HealthAI</h2>
+                    <p>Your intelligent healthcare companion designed to provide educational health information and guidance.</p>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card" data-section="chat">
+                        <div class="feature-icon">💬</div>
+                        <h3>Patient Chat</h3>
+                        <p>Ask health-related questions and receive intelligent responses from our AI assistant.</p>
+                        <button class="btn btn--primary">Start Chat</button>
+                    </div>
+
+                    <div class="feature-card" data-section="prediction">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Disease Prediction</h3>
+                        <p>Analyze your symptoms and get insights about potential health conditions.</p>
+                        <button class="btn btn--primary">Analyze Symptoms</button>
+                    </div>
+
+                    <div class="feature-card" data-section="treatment">
+                        <div class="feature-icon">📋</div>
+                        <h3>Treatment Plans</h3>
+                        <p>Get personalized treatment recommendations based on your health profile.</p>
+                        <button class="btn btn--primary">Create Plan</button>
+                    </div>
+
+                    <div class="feature-card" data-section="analytics">
+                        <div class="feature-icon">📊</div>
+                        <h3>Health Analytics</h3>
+                        <p>Track your health metrics and view wellness trends over time.</p>
+                        <button class="btn btn--primary">View Analytics</button>
+                    </div>
+                </div>
+
+                <div class="disclaimer-box">
+                    <h4>⚠️ Important Medical Disclaimer</h4>
+                    <p>This application is for educational and informational purposes only. It is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of qualified healthcare providers for any medical concerns.</p>
+                </div>
+            </section>
+
+            <!-- Patient Chat Section -->
+            <section id="chat" class="section">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h2>💬 Patient Chat</h2>
+                        <p>Ask me any health-related questions. I'm here to help with educational information!</p>
+                    </div>
+
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot-message">
+                            <div class="message-content">
+                                <p>Hello! I'm your HealthAI assistant. Feel free to ask me any health-related questions. Remember, this is for educational purposes only and should not replace professional medical advice.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-container">
+                        <form id="chatForm" class="chat-form">
+                            <textarea id="chatInput" class="form-control" placeholder="Ask me about your health concerns..." rows="3" required></textarea>
+                            <button type="submit" class="btn btn--primary">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="loading hidden" id="chatLoading">
+                        <div class="loading-spinner"></div>
+                        <p>AI is processing your question...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Disease Prediction Section -->
+            <section id="prediction" class="section">
+                <div class="prediction-container">
+                    <div class="prediction-header">
+                        <h2>🔍 Disease Prediction</h2>
+                        <p>Describe your symptoms and receive insights about potential health conditions.</p>
+                    </div>
+
+                    <div class="prediction-form-container">
+                        <form id="predictionForm" class="prediction-form">
+                            <div class="form-group">
+                                <label for="symptoms" class="form-label">Describe your symptoms in detail:</label>
+                                <textarea id="symptoms" class="form-control" placeholder="Please describe your symptoms, when they started, severity level, and any related factors..." rows="6" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--lg">Analyze Symptoms</button>
+                        </form>
+
+                        <div class="loading hidden" id="predictionLoading">
+                            <div class="loading-spinner"></div>
+                            <p>Analyzing your symptoms...</p>
+                        </div>
+
+                        <div id="predictionResult" class="prediction-result hidden">
+                            <h3>Analysis Results</h3>
+                            <div class="result-content">
+                                <!-- Results will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Treatment Plans Section -->
+            <section id="treatment" class="section">
+                <div class="treatment-container">
+                    <div class="treatment-header">
+                        <h2>📋 Treatment Plans</h2>
+                        <p>Get personalized treatment recommendations based on your health profile.</p>
+                    </div>
+
+                    <div class="treatment-form-container">
+                        <form id="treatmentForm" class="treatment-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="condition" class="form-label">Primary Health Condition:</label>
+                                    <input type="text" id="condition" class="form-control" placeholder="e.g., Hypertension, Diabetes" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="age" class="form-label">Age:</label>
+                                    <input type="number" id="age" class="form-control" min="1" max="120" placeholder="Enter your age" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="gender" class="form-label">Gender:</label>
+                                    <select id="gender" class="form-control" required>
+                                        <option value="">Select gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="medicalHistory" class="form-label">Medical History:</label>
+                                    <textarea id="medicalHistory" class="form-control" placeholder="List any chronic conditions, allergies, current medications, or relevant medical history..." rows="4"></textarea>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn--primary btn--lg">Generate Treatment Plan</button>
+                        </form>
+
+                        <div class="loading hidden" id="treatmentLoading">
+                            <div class="loading-spinner"></div>
+                            <p>Generating personalized treatment plan...</p>
+                        </div>
+
+                        <div id="treatmentResult" class="treatment-result hidden">
+                            <h3>Your Personalized Treatment Plan</h3>
+                            <div class="result-content">
+                                <!-- Results will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Health Analytics Section -->
+            <section id="analytics" class="section">
+                <div class="analytics-container">
+                    <div class="analytics-header">
+                        <h2>📊 Health Analytics</h2>
+                        <p>Track your health metrics and wellness trends.</p>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <h3>Heart Rate Zones</h3>
+                                <div class="metric-icon">❤️</div>
+                            </div>
+                            <div class="heart-rate-zones">
+                                <div class="zone-item">
+                                    <span class="zone-label">Resting:</span>
+                                    <span class="zone-value">60-100 bpm</span>
+                                </div>
+                                <div class="zone-item">
+                                    <span class="zone-label">Light Activity:</span>
+                                    <span class="zone-value">100-120 bpm</span>
+                                </div>
+                                <div class="zone-item">
+                                    <span class="zone-label">Moderate Activity:</span>
+                                    <span class="zone-value">120-140 bpm</span>
+                                </div>
+                                <div class="zone-item">
+                                    <span class="zone-label">Vigorous Activity:</span>
+                                    <span class="zone-value">140-160 bpm</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <h3>BMI Calculator</h3>
+                                <div class="metric-icon">⚖️</div>
+                            </div>
+                            <div class="bmi-calculator">
+                                <div class="form-group">
+                                    <label for="height">Height (cm):</label>
+                                    <input type="number" id="height" class="form-control" placeholder="170">
+                                </div>
+                                <div class="form-group">
+                                    <label for="weight">Weight (kg):</label>
+                                    <input type="number" id="weight" class="form-control" placeholder="70">
+                                </div>
+                                <button id="calculateBMI" class="btn btn--secondary">Calculate BMI</button>
+                                <div id="bmiResult" class="bmi-result hidden">
+                                    <div class="bmi-value"></div>
+                                    <div class="bmi-category"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="metric-card wellness-tips">
+                            <div class="metric-header">
+                                <h3>Wellness Tips</h3>
+                                <div class="metric-icon">💡</div>
+                            </div>
+                            <div class="tips-list">
+                                <div class="tip-item">💧 Stay hydrated - aim for 8 glasses of water daily</div>
+                                <div class="tip-item">😴 Get 7-9 hours of quality sleep each night</div>
+                                <div class="tip-item">🏃‍♂️ Include 30 minutes of moderate exercise most days</div>
+                                <div class="tip-item">🥗 Eat a balanced diet rich in fruits and vegetables</div>
+                                <div class="tip-item">🧘‍♀️ Practice stress management techniques regularly</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-disclaimer">
+                    <h4>⚠️ Medical Disclaimer</h4>
+                    <p>This application is for educational and informational purposes only. Always consult with qualified healthcare providers for medical advice, diagnosis, and treatment. Never disregard professional medical advice or delay seeking treatment because of information from this application.</p>
+                </div>
+                <div class="footer-info">
+                    <p>&copy; 2025 HealthAI Demo - Educational Purpose Only</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
